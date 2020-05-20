@@ -1,6 +1,7 @@
 package com.dongheon.laddergame.View;
 
-import com.dongheon.laddergame.validator.Validator;
+import com.dongheon.laddergame.utils.Converter;
+import com.dongheon.laddergame.validator.UserNameValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,12 +16,17 @@ public class InputView {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public List<String> getParticipantsNames() {
+    public List<String> getUserNames() throws Exception {
         OutputView.printMessage(INPUT_PARTICIPANTS_NAME);
-        String participantsNames = scanner.nextLine();
-        return Arrays.stream(participantsNames.split(","))
-                .map(String::trim)
-                .collect(Collectors.toList());
+        String usersNames = scanner.nextLine();
+        List<String> converted = Converter.stringToList(usersNames);
+        try{
+            UserNameValidator.test(converted);
+        } catch (Exception e) {
+            OutputView.printMessage(e.getMessage());
+            return getUserNames();
+        }
+        return converted;
     }
 
     public List<String> getOptions() {
