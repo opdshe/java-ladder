@@ -20,7 +20,7 @@ public class InputView {
         String usersNames = scanner.nextLine();
         List<String> converted = Converter.stringToList(usersNames);
         try {
-            UserNameValidator.test(converted);
+            UserNameValidator.validate(converted);
         } catch (Exception e) {
             OutputView.printMessage(e.getMessage());
             return getUserNames();
@@ -28,15 +28,15 @@ public class InputView {
         return converted;
     }
 
-    public List<String> getOptions() {
+    public List<String> getOptions(int countOfUser) {
         OutputView.printMessage(INPUT_OPTIONS);
         String options = scanner.nextLine();
         List<String> converted = Converter.stringToList(options);
         try {
-            OptionValidator.test(converted);
+            OptionValidator.validate(converted, countOfUser);
         } catch (Exception e) {
             OutputView.printMessage(e.getMessage());
-            return getOptions();
+            return getOptions(countOfUser);
         }
         return converted;
     }
@@ -45,7 +45,7 @@ public class InputView {
         OutputView.printMessage(INPUT_HEIGHT);
         int maxHeight = scanner.nextInt();
         try {
-            MaxHeightValidator.test(maxHeight);
+            MaxHeightValidator.validate(maxHeight);
         } catch (Exception e) {
             OutputView.printMessage(e.getMessage());
             return getMaxHeight();
