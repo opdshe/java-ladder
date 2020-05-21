@@ -1,4 +1,4 @@
-package com.dongheon.laddergame.domain;
+package com.dongheon.laddergame.domain.ladder;
 
 import java.util.List;
 
