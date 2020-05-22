@@ -46,6 +46,7 @@
     - 높이가 1이상인지 확인. 
 - 사다리 구현
     - Ladder
+    - LadderCreator
     - LineCreator
     - Line
-    
+    - 이동 로직 구현
