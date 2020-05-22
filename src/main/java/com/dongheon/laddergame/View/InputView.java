@@ -13,9 +13,9 @@ public class InputView {
     private static final String INPUT_OPTIONS = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요. ";
     private static final String INPUT_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
 
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public List<String> getUserNames() {
+    public static List<String> getUserNames() {
         OutputView.printMessage(INPUT_PARTICIPANTS_NAME);
         String usersNames = scanner.nextLine();
         List<String> converted = Converter.stringToList(usersNames);
@@ -28,7 +28,7 @@ public class InputView {
         return converted;
     }
 
-    public List<String> getOptions(int countOfUser) {
+    public static List<String> getOptions(int countOfUser) {
         OutputView.printMessage(INPUT_OPTIONS);
         String options = scanner.nextLine();
         List<String> converted = Converter.stringToList(options);
@@ -41,7 +41,7 @@ public class InputView {
         return converted;
     }
 
-    public int getMaxHeight() {
+    public static int getMaxHeight() {
         OutputView.printMessage(INPUT_HEIGHT);
         int maxHeight = scanner.nextInt();
         try {

@@ -1,5 +1,6 @@
 package com.dongheon.laddergame.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +11,32 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<Integer> getResult() {
+        List<Integer> result = new ArrayList<>();
+        int countOfUser = lines.get(0).getSize();
+        for (int userIdx = 0; userIdx < countOfUser; userIdx++) {
+            int optionIdx = getOptionIdx(userIdx);
+            result.add(optionIdx);
+        }
+        return result;
     }
+
+    private int getOptionIdx(int column) {
+        int currentRow = 0;
+        int maxHeight = getMaxHeight();
+        while (currentRow < getMaxHeight()) {
+            column = getLine(currentRow).positionAfterMove(column);
+            currentRow++;
+        }
+        return column;
+    }
+
+    private Line getLine(int row) {
+        return lines.get(row);
+    }
+
+    private int getMaxHeight() {
+        return lines.size();
+    }
+
 }

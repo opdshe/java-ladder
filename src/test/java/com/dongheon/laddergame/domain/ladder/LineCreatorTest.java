@@ -12,6 +12,6 @@ public class LineCreatorTest {
         // when
         Line line = LineCreator.createLine(4);
         // then
-        assertThat(line.getPoints().size()).isEqualTo(countOfUser);
+        assertThat(line.getLine().size()).isEqualTo(countOfUser);
     }
 }
