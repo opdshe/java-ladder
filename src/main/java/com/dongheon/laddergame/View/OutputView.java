@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     public static void printResult(Ladder ladder, List<String> userNames, List<String> options) {
-        printMessage("사다리 결과");
+        printMessage(RESULT_OF_LADDER_GAME);
         printInOneLine(userNames);
         printLadder(ladder);
         printInOneLine(options);
@@ -28,7 +28,6 @@ public class OutputView {
             printLadderOneLine(ladder.getLine(i));
         }
     }
-
 
     private static void printLadderOneLine(Line line) {
         int countOfColumn = line.getSize();
