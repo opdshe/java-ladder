@@ -21,7 +21,7 @@ public class Line {
         return column;
     }
 
-    private boolean hasLine(int column) {
+    public boolean hasLine(int column) {
         return points.get(column);
     }
 
