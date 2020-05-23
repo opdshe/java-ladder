@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Line {
     private final int MINIMUM_COLUMN_FOR_CHECKING_LEFT = 1;
+
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {

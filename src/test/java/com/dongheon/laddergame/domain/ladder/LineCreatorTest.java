@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineCreatorTest {
     @Test
-    public void createLine_테스트() {
+    public void Line_생성_테스트() {
         // given
         int countOfUser = 4;
         // when
