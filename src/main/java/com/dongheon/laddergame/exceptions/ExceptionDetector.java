@@ -1,4 +1,4 @@
-package com.dongheon.laddergame.utils;
+package com.dongheon.laddergame.exceptions;
 
 import java.util.function.Predicate;
 public class ExceptionDetector {

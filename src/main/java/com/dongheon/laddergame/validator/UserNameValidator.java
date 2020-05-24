@@ -2,7 +2,7 @@ package com.dongheon.laddergame.validator;
 
 import com.dongheon.laddergame.controller.LadderGame;
 import com.dongheon.laddergame.exceptions.EmptyInputException;
-import com.dongheon.laddergame.utils.ExceptionDetector;
+import com.dongheon.laddergame.exceptions.ExceptionDetector;
 import com.dongheon.laddergame.exceptions.IncorrectNameLengthException;
 
 import java.util.List;
