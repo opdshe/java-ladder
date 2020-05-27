@@ -52,4 +52,8 @@ public class InputView {
         }
         return maxHeight;
     }
+
+    public static String inputUserName () {
+        return scanner.nextLine();
+    }
 }

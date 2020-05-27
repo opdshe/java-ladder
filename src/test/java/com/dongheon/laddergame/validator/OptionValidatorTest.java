@@ -69,5 +69,4 @@ public class OptionValidatorTest {
         // then
         OptionValidator.validate(converted, countOfUser);
     }
-
 }

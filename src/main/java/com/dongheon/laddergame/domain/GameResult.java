@@ -19,7 +19,7 @@ public class GameResult {
         }
     }
 
-    public String getOption(String userName) throws IsNotInUserNamesException {
+    public String getItem(String userName) throws IsNotInUserNamesException {
         if (userName.equals(SHOW_EVERYONE)) {
             return toString();
         }
