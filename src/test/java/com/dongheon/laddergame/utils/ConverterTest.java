@@ -16,6 +16,6 @@ public class ConverterTest {
         List<String> after = Converter.stringToList(before);
 
         // then
-        assertThat(after).contains("iwant", "mac", "book");
+        assertThat(after).containsOnly("iwant", "mac", "book");
     }
 }

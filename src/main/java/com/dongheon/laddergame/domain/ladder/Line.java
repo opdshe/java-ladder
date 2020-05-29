@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final int MINIMUM_COLUMN_FOR_CHECKING_LEFT = 1;
+    private final static int MINIMUM_COLUMN_FOR_CHECKING_LEFT = 1;
 
     private final List<Boolean> points;
 
@@ -12,11 +12,11 @@ public class Line {
         this.points = points;
     }
 
-    public int positionAfterMove(int column) {
+    public int getPositionAfterMove(int column) {
         if (hasLine(column)) {
             return column + 1;
         }
-        if (column >= MINIMUM_COLUMN_FOR_CHECKING_LEFT && hasLine(column - 1)) {
+        if (availableToMoveLeft(column) && hasLine(column - 1)) {
             return column - 1;
         }
         return column;
@@ -24,6 +24,10 @@ public class Line {
 
     public boolean hasLine(int column) {
         return points.get(column);
+    }
+
+    private static boolean availableToMoveLeft(int column) {
+        return column >= MINIMUM_COLUMN_FOR_CHECKING_LEFT;
     }
 
     public List<Boolean> getLine() {

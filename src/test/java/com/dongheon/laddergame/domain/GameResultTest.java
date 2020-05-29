@@ -1,11 +1,16 @@
 package com.dongheon.laddergame.domain;
 
+import com.dongheon.laddergame.domain.ladder.Ladder;
+import com.dongheon.laddergame.domain.ladder.Line;
 import com.dongheon.laddergame.exceptions.IsNotInUserNamesException;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static com.dongheon.laddergame.domain.GameResult.EMPTY_STRING_FOR_INDICATE_ALL_RESULT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -14,46 +19,48 @@ public class GameResultTest {
     @Test
     public void 해당_사용자_없으면_예외발생() {
         // given
-        List<Integer> mockLadderResult = Arrays.asList(2, 1, 0);
-        List<String> mockUserNames = Arrays.asList("lee", "hwang", "jung");
-        List<String> mockOptions = Arrays.asList("꽝", "꽝", "3500");
-        GameResult gameResult = new GameResult(mockLadderResult, mockUserNames, mockOptions);
+        Map<String, String> mockResult = new HashMap<>();
+        mockResult.put("kim", "꽝");
+        mockResult.put("lee", "꽝");
+        mockResult.put("jung", "3500");
+
+        //when
+        GameResult gameResult = new GameResult(mockResult);
 
         // then
         assertThatExceptionOfType(IsNotInUserNamesException.class)
-                .isThrownBy(() -> gameResult.getOption("hanzo"));
+                .isThrownBy(() -> gameResult.getMatchedItem("park"));
     }
 
     @Test
     public void 해당_사용자_있으면_아이템_출력() throws IsNotInUserNamesException {
         // given
-        List<Integer> mockLadderResult = Arrays.asList(2, 1, 0);
-        List<String> mockUserNames = Arrays.asList("lee", "hwang", "jung");
-        List<String> mockOptions = Arrays.asList("꽝", "꽝", "3500");
-        GameResult gameResult = new GameResult(mockLadderResult, mockUserNames, mockOptions);
+        Map<String, String> mockResult = new HashMap<>();
+        mockResult.put("kim", "꽝");
+        mockResult.put("lee", "꽝");
+        mockResult.put("jung", "3500");
 
-        // when
-        String option = gameResult.getOption("lee");
+        //when
+        GameResult gameResult = new GameResult(mockResult);
+        String item = gameResult.getMatchedItem("jung");
 
         // then
-        assertThat(option).isEqualTo("3500");
+        assertThat(item).isEqualTo("3500");
     }
 
     @Test
-    public void all_입력_시_전체_출력() throws IsNotInUserNamesException {
+    public void all_입력_시_빈문자열_반환() throws IsNotInUserNamesException {
         // given
-        List<Integer> mockLadderResult = Arrays.asList(2, 1, 0);
-        List<String> mockUserNames = Arrays.asList("lee", "hwang", "jung");
-        List<String> mockOptions = Arrays.asList("꽝", "꽝", "3500");
-        GameResult gameResult = new GameResult(mockLadderResult, mockUserNames, mockOptions);
+        Map<String, String> mockResult = new HashMap<>();
+        mockResult.put("kim", "꽝");
+        mockResult.put("lee", "꽝");
+        mockResult.put("jung", "3500");
 
-        // when
-        String option = gameResult.getOption("all");
+        //when
+        GameResult gameResult = new GameResult(mockResult);
+        String item = gameResult.getMatchedItem("all");
 
         // then
-        assertThat(option)
-                .contains("lee")
-                .contains("hwang")
-                .contains("jung");
+        assertThat(item).isEqualTo(EMPTY_STRING_FOR_INDICATE_ALL_RESULT);
     }
 }

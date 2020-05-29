@@ -2,11 +2,15 @@ package com.dongheon.laddergame.controller;
 
 import com.dongheon.laddergame.View.InputView;
 import com.dongheon.laddergame.View.OutputView;
+import com.dongheon.laddergame.domain.Calculator;
 import com.dongheon.laddergame.domain.GameResult;
 import com.dongheon.laddergame.domain.ladder.Ladder;
 import com.dongheon.laddergame.domain.ladder.LadderCreator;
 
 import java.util.List;
+import java.util.Map;
+
+import static com.dongheon.laddergame.domain.GameResult.EMPTY_STRING_FOR_INDICATE_ALL_RESULT;
 
 public class LadderGame {
     public static final int MAXIMUM_USER_NAME_LENGTH = 5;
@@ -16,31 +20,33 @@ public class LadderGame {
 
     public static void play() {
         List<String> userNames = InputView.getUserNames();
-        List<String> items = InputView.getOptions(userNames.size());
+        List<String> items = InputView.getItems(userNames.size());
         int maxHeight = InputView.getMaxHeight();
 
         Ladder ladder = LadderCreator.createLadder(userNames.size(), maxHeight);
         OutputView.printResult(ladder, userNames, items);
-        GameResult gameResult = new GameResult(ladder.getResult(), userNames, items);
+        Map<String, String> result = Calculator.calculate(ladder, userNames, items);
+        GameResult gameResult = new GameResult(result);
 
         showResult(gameResult);
     }
 
     private static void showResult(GameResult gameResult) {
-        String input;
+        String result;
         do {
             OutputView.printMessage("\n" + WHOSE_RESULT_DO_YOU_WANT);
-            input = InputView.inputUserName();
+            String input = InputView.inputUserName();
             OutputView.printMessage("\n" + GAME_RESULT);
-            String result = getResult(gameResult, input);
+            result = getResult(gameResult, input);
             OutputView.printMessage(result);
-        } while (!input.equals(SHOW_EVERYONE));
+        } while (!result.equals(EMPTY_STRING_FOR_INDICATE_ALL_RESULT));
+        OutputView.printTotalResult(gameResult);
     }
 
     private static String getResult(GameResult gameResult, String input) {
         String result;
         try {
-            result = gameResult.getItem(input);
+            result = gameResult.getMatchedItem(input);
         } catch (Exception e) {
             result = e.getMessage();
         }

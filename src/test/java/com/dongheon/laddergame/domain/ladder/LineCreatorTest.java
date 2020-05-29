@@ -9,8 +9,10 @@ public class LineCreatorTest {
     public void Line_생성_테스트() {
         // given
         int countOfUser = 4;
+
         // when
         Line line = LineCreator.createLine(4);
+
         // then
         assertThat(line.getLine().size()).isEqualTo(countOfUser);
     }

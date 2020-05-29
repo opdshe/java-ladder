@@ -11,12 +11,13 @@ public class LadderCreatorTest {
         int countOfUser = 4;
         int maxHeight = 5;
         Ladder ladder = LadderCreator.createLadder(countOfUser, maxHeight);
+
         // when
         int row = ladder.getMaxHeight();
         int column = ladder.getLine(0).getSize();
+
         // then
         assertThat(row).isEqualTo(maxHeight);
         assertThat(column).isEqualTo(countOfUser);
     }
-
 }

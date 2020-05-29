@@ -2,26 +2,23 @@ package com.dongheon.laddergame.domain;
 
 import com.dongheon.laddergame.exceptions.IsNotInUserNamesException;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.Collections;
 import java.util.Map;
 
 import static com.dongheon.laddergame.controller.LadderGame.SHOW_EVERYONE;
 
 public class GameResult {
+    public static final String EMPTY_STRING_FOR_INDICATE_ALL_RESULT = "";
+
     private Map<String, String> result;
 
-    public GameResult(List<Integer> ladderResult, List<String> userNames, List<String> options) {
-        result = new HashMap<>();
-        int countOfUser = userNames.size();
-        for (int i = 0; i < countOfUser; i++) {
-            result.put(userNames.get(i), options.get(ladderResult.get(i)));
-        }
+    public GameResult(Map<String, String> result) {
+        this.result = result;
     }
 
-    public String getItem(String userName) throws IsNotInUserNamesException {
+    public String getMatchedItem(String userName) throws IsNotInUserNamesException {
         if (userName.equals(SHOW_EVERYONE)) {
-            return toString();
+            return EMPTY_STRING_FOR_INDICATE_ALL_RESULT;
         }
         if (!result.containsKey(userName)) {
             throw new IsNotInUserNamesException();
@@ -29,14 +26,7 @@ public class GameResult {
         return result.get(userName);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        result.entrySet()
-                .forEach(entry -> stringBuilder.append(entry.getKey())
-                        .append(" : ")
-                        .append(entry.getValue())
-                        .append("\n"));
-        return stringBuilder.toString();
+    public Map<String, String> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 }

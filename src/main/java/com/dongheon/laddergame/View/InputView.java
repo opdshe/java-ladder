@@ -28,7 +28,7 @@ public class InputView {
         return converted;
     }
 
-    public static List<String> getOptions(int countOfUser) {
+    public static List<String> getItems(int countOfUser) {
         OutputView.printMessage(INPUT_OPTIONS);
         String options = scanner.nextLine();
         List<String> converted = Converter.stringToList(options);
@@ -36,14 +36,14 @@ public class InputView {
             OptionValidator.validate(converted, countOfUser);
         } catch (Exception e) {
             OutputView.printMessage(e.getMessage());
-            return getOptions(countOfUser);
+            return getItems(countOfUser);
         }
         return converted;
     }
 
     public static int getMaxHeight() {
         OutputView.printMessage(INPUT_HEIGHT);
-        int maxHeight = scanner.nextInt();
+        int maxHeight = Integer.parseInt(scanner.nextLine());
         try {
             MaxHeightValidator.validate(maxHeight);
         } catch (Exception e) {
@@ -53,7 +53,8 @@ public class InputView {
         return maxHeight;
     }
 
-    public static String inputUserName () {
+    public static String inputUserName() {
+        scanner.reset();
         return scanner.nextLine();
     }
 }

@@ -14,7 +14,7 @@ public class LineTest {
         Line line = new Line(Arrays.asList(false, true, false));
         int current = 1;
         // when
-        int nextColumn = line.positionAfterMove(current);
+        int nextColumn = line.getPositionAfterMove(current);
         // then
         assertThat(nextColumn).isEqualTo(current + 1);
     }
@@ -25,7 +25,7 @@ public class LineTest {
         Line line = new Line(Arrays.asList(false, true, false));
         int current = 2;
         // when
-        int nextColumn = line.positionAfterMove(current);
+        int nextColumn = line.getPositionAfterMove(current);
         // then
         assertThat(nextColumn).isEqualTo(current - 1);
     }
@@ -36,7 +36,7 @@ public class LineTest {
         Line line = new Line(Arrays.asList(false, false, false));
         int current = 1;
         // when
-        int nextColumn = line.positionAfterMove(current);
+        int nextColumn = line.getPositionAfterMove(current);
         // then
         assertThat(nextColumn).isEqualTo(current);
     }

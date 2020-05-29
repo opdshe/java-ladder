@@ -1,5 +1,6 @@
 package com.dongheon.laddergame.View;
 
+import com.dongheon.laddergame.domain.GameResult;
 import com.dongheon.laddergame.domain.ladder.Ladder;
 import com.dongheon.laddergame.domain.ladder.Line;
 
@@ -20,6 +21,13 @@ public class OutputView {
         printInOneLine(userNames);
         printLadder(ladder);
         printInOneLine(options);
+    }
+
+    private static void printInOneLine(List<String> target) {
+        String oneLineUserName = target.stream()
+                .map(name -> String.format("%6s", name))
+                .reduce("", (a, b) -> a + b);
+        printMessage(oneLineUserName);
     }
 
     private static void printLadder(Ladder ladder) {
@@ -46,10 +54,12 @@ public class OutputView {
         return line.hasLine(column) ? BRIDGE : EMPTY;
     }
 
-    private static void printInOneLine(List<String> target) {
-        String oneLineUserName = target.stream()
-                .map(name -> String.format("%6s", name))
-                .reduce("", (a, b) -> a + b);
-        printMessage(oneLineUserName);
+    public static void printTotalResult(GameResult gameResult) {
+        StringBuilder totalResult = new StringBuilder();
+        gameResult.getResult().forEach((key, value) -> totalResult.append(key)
+                .append(" : ")
+                .append(value)
+                .append("\n"));
+        printMessage(totalResult.toString());
     }
 }
