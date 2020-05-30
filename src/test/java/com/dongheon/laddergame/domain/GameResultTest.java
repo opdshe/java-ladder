@@ -1,13 +1,9 @@
 package com.dongheon.laddergame.domain;
 
-import com.dongheon.laddergame.domain.ladder.Ladder;
-import com.dongheon.laddergame.domain.ladder.Line;
 import com.dongheon.laddergame.exceptions.IsNotInUserNamesException;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.dongheon.laddergame.domain.GameResult.EMPTY_STRING_FOR_INDICATE_ALL_RESULT;

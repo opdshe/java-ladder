@@ -2,6 +2,7 @@ package com.dongheon.laddergame.domain.ladder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private final static int MINIMUM_COLUMN_FOR_CHECKING_LEFT = 1;
@@ -36,5 +37,18 @@ public class Line {
 
     public int getSize() {
         return points.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

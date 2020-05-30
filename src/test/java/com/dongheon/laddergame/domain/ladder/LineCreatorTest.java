@@ -2,6 +2,8 @@ package com.dongheon.laddergame.domain.ladder;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineCreatorTest {
@@ -11,9 +13,10 @@ public class LineCreatorTest {
         int countOfUser = 4;
 
         // when
-        Line line = LineCreator.createLine(4);
+        Line line = new Line(Arrays.asList(true, false, true, false));
+        Line createdByLineCreator = LineCreator.createLine(countOfUser, new SpecifyCreateStrategy());
 
         // then
-        assertThat(line.getLine().size()).isEqualTo(countOfUser);
+        assertThat(line).isEqualTo(createdByLineCreator);
     }
 }

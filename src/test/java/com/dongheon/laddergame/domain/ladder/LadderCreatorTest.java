@@ -2,6 +2,10 @@ package com.dongheon.laddergame.domain.ladder;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderCreatorTest {
@@ -9,15 +13,15 @@ public class LadderCreatorTest {
     public void Ladder_생성_테스트() {
         // given
         int countOfUser = 4;
-        int maxHeight = 5;
-        Ladder ladder = LadderCreator.createLadder(countOfUser, maxHeight);
+        int maxHeight = 1;
+        Line line = new Line(Arrays.asList(true, false, true, false));
+        List<Line> lines = Collections.singletonList(line);
 
         // when
-        int row = ladder.getMaxHeight();
-        int column = ladder.getLine(0).getSize();
+        Ladder ladder = new Ladder(lines);
+        Ladder createdByLadderCreator = LadderCreator.createLadder(countOfUser, maxHeight, new SpecifyCreateStrategy());
 
         // then
-        assertThat(row).isEqualTo(maxHeight);
-        assertThat(column).isEqualTo(countOfUser);
+        assertThat(ladder).isEqualTo(createdByLadderCreator);
     }
 }
