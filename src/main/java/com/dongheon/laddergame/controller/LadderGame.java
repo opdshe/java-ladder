@@ -6,6 +6,7 @@ import com.dongheon.laddergame.domain.Calculator;
 import com.dongheon.laddergame.domain.GameResult;
 import com.dongheon.laddergame.domain.ladder.Ladder;
 import com.dongheon.laddergame.domain.ladder.LadderCreator;
+import com.dongheon.laddergame.domain.ladder.LadderProgressService;
 import com.dongheon.laddergame.domain.ladder.RandomCreateStrategy;
 
 import java.util.List;
@@ -26,8 +27,7 @@ public class LadderGame {
 
         Ladder ladder = LadderCreator.createLadder(userNames.size(), maxHeight, new RandomCreateStrategy());
         OutputView.printResult(ladder, userNames, items);
-        Map<String, String> result = Calculator.calculate(ladder, userNames, items);
-        GameResult gameResult = new GameResult(result);
+        GameResult gameResult = LadderProgressService.progress(ladder, userNames, items);
 
         showResult(gameResult);
     }

@@ -43,8 +43,9 @@ public class InputView {
 
     public static int getMaxHeight() {
         OutputView.printMessage(INPUT_HEIGHT);
-        int maxHeight = Integer.parseInt(scanner.nextLine());
+        int maxHeight;
         try {
+            maxHeight = Integer.parseInt(scanner.nextLine());
             MaxHeightValidator.validate(maxHeight);
         } catch (Exception e) {
             OutputView.printMessage(e.getMessage());
